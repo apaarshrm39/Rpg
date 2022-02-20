@@ -1,10 +1,13 @@
 package main
 
 import (
+	"context"
 	"flag"
+	"fmt"
 	"path/filepath"
 
 	rgp "github.com/apaarshrm39/rgp/pkg/client/clientset/versioned"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/util/homedir"
 )
@@ -27,5 +30,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	
+	rgp, err := rgpset.ApaarV1alpha1().Rgps("default").List(context.Background(), metav1.ListOptions{})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(len(rgp.Items))
 }

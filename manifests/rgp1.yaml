@@ -1,0 +1,7 @@
+apiVersion: apaar.dev/v1alpha1
+kind: Rgp
+metadata:
+  name: rgp-1
+spec:
+  name: rgp-1
+  location: eastus

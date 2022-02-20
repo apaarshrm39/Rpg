@@ -8,20 +8,20 @@ import (
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 type Rgp struct {
-	metav1.TypeMeta
-	metav1.ObjectMeta
-	Spec RgpSpec
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+	Spec              RgpSpec `json:"spec,omitempty"`
 }
 
 type RgpSpec struct {
-	Location string
-	Name     string
+	Location string `json:"location,omitempty"`
+	Name     string `json:"name,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 type RgpList struct {
-	metav1.TypeMeta
-	metav1.ListMeta
-	Items []Rgp
+	metav1.TypeMeta `json:",inline"`
+	metav1.ListMeta `json:"metadata,omitempty"`
+	Items           []Rgp `json:"items,omitempty"`
 }
