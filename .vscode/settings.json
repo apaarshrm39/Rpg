@@ -1,7 +1,0 @@
-{
-    "go.installDependenciesWhenBuilding": true,
-    "go.gopath": "/home/apaar/go",
-    "go.alternateTools": {
-        "go": "/snap/go/current/bin/go"
-    },
-}
