@@ -25,7 +25,7 @@ import (
 
 	versioned "github.com/apaarshrm39/rgp/pkg/client/clientset/versioned"
 	apaardev "github.com/apaarshrm39/rgp/pkg/client/informers/externalversions/apaar.dev"
-	internalinterfaces "github.com/apaarshrm39/rgp/pkg/client/informers/externalversions"
+	internalinterfaces "github.com/apaarshrm39/rgp/pkg/client/informers/externalversions/internalinterfaces"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

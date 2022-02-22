@@ -15,7 +15,7 @@ go get k8s.io/code-generator
 
 ```bash
 
-execdir=~/go/pkg/mod/k8s.io/code-generator@v0.23.4
+execdir=~/go/pkg/mod/k8s.io/code-generator@v0.21.10
 
 ```
 
