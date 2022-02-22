@@ -1,14 +1,12 @@
 package controller
 
 import (
-	"context"
 	"fmt"
 	"time"
 
 	rgp_client "github.com/apaarshrm39/rgp/pkg/client/clientset/versioned"
 	rgp_informer "github.com/apaarshrm39/rgp/pkg/client/informers/externalversions/apaar.dev/v1alpha1"
 	rgp_lister "github.com/apaarshrm39/rgp/pkg/client/listers/apaar.dev/v1alpha1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/util/workqueue"
@@ -79,8 +77,9 @@ func (c *Controller) process() bool {
 		fmt.Println(err)
 		return false
 	}
-
-	rgp, err := c.rclient.ApaarV1alpha1().Rgps(ns).Get(context.TODO(), name, metav1.GetOptions{})
+	//bad habbit, don't use API Server
+	//rgp, err := c.rclient.ApaarV1alpha1().Rgps(ns).Get(context.TODO(), name, metav1.GetOptions{})
+	rgp, err := c.rgpLister.Rgps(ns).Get(name)
 	if err != nil {
 		fmt.Println(err)
 		return false
