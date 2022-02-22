@@ -1,13 +1,13 @@
 package main
 
 import (
-	"context"
 	"flag"
-	"fmt"
 	"path/filepath"
+	"time"
 
 	rgp "github.com/apaarshrm39/rgp/pkg/client/clientset/versioned"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	rgp_informer "github.com/apaarshrm39/rgp/pkg/client/informers/externalversions"
+	rgp_controller "github.com/apaarshrm39/rgp/pkg/controller"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/util/homedir"
 )
@@ -30,10 +30,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	rgp, err := rgpset.ApaarV1alpha1().Rgps("default").List(context.Background(), metav1.ListOptions{})
-	if err != nil {
-		panic(err)
-	}
 
-	fmt.Println(len(rgp.Items))
+	informers := rgp_informer.NewSharedInformerFactory(rgpset, 10*time.Minute)
+	c := rgp_controller.NewController(*rgpset, informers.Apaar().V1alpha1().Rgps())
+	ch := make(<-chan struct{})
+	informers.Start(ch)
+	c.Run(ch)
+
 }

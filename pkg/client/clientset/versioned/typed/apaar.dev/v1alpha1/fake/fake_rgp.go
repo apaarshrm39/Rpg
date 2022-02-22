@@ -105,7 +105,7 @@ func (c *FakeRgps) Update(ctx context.Context, rgp *v1alpha1.Rgp, opts v1.Update
 // Delete takes name of the rgp and deletes it. Returns an error if one occurs.
 func (c *FakeRgps) Delete(ctx context.Context, name string, opts v1.DeleteOptions) error {
 	_, err := c.Fake.
-		Invokes(testing.NewDeleteActionWithOptions(rgpsResource, c.ns, name, opts), &v1alpha1.Rgp{})
+		Invokes(testing.NewDeleteAction(rgpsResource, c.ns, name), &v1alpha1.Rgp{})
 
 	return err
 }
