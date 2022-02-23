@@ -16,6 +16,7 @@ type Rgp struct {
 type RgpSpec struct {
 	Location string `json:"location,omitempty"`
 	Name     string `json:"name,omitempty"`
+	secret   string `json:"secret,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
